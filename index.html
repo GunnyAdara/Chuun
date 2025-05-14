@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Espectacular del Destino: La Ruta de los Cenotes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --color-primario-fondo: #F4F1EA;
+            --color-texto-principal: #3D3A37;
+            --color-titulos: #0A3D62; 
+            --color-acento-dorado: #B08D57;
+            --color-acento-verde: #3E5B50;
+            --color-fondo-seccion-oscura: #2C3A47;
+            --color-texto-claro: #F0F0F0;
+            
+            /* Colores para la gráfica de línea - ¡Recontra MODIFICADOS! */
+            --color-grafica-linea-principal: var(--color-titulos); /* Línea azul */
+            --color-grafica-area-relleno-naranja: rgba(230, 126, 34, 0.35); /* Naranja de --color-naranja-grafica-pastel (#E67E22) con opacidad */
+            
+            --color-grafica-punto-principal: var(--color-titulos); 
+            --color-grafica-punto-borde: #FFFFFF; 
+            --color-grafica-tooltip-fondo: rgba(44, 58, 71, 0.95); 
+            
+            /* Estos siempre serán para fondo claro ahora, ya que la gráfica tendrá fondo blanco */
+            --color-grafica-ejes-texto: #666666; /* Gris oscuro para los textos de ejes */
+            --color-grafica-grid: rgba(0, 0, 0, 0.08); /* Grid clarito */
+            --color-grafica-leyenda-texto: var(--color-texto-principal); /* Texto principal para la leyenda */
+
+            --color-azul-grafica-pastel: #3498DB;
+            --color-dorado-grafica-pastel: #F1C40F;
+            --color-naranja-grafica-pastel: #E67E22; 
+            --color-verde-grafica-pastel: #2ECC71;
+
+            --color-tabla-borde: #D1C7B7;  
+            --color-tabla-header-fondo: #EAE6DE;  
+            --color-tabla-header-texto: var(--color-titulos);
+            --color-tabla-fila-par-fondo: transparent;  
+            --color-tabla-fondo-blanco: #FFFFFF;  
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--color-primario-fondo);
+            color: var(--color-texto-principal);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-titulos);
+            margin-bottom: 0.75em;
+            line-height: 1.3;
+        }
+
+        .container-principal {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .header-informe {
+            background-color: var(--color-titulos);
+            color: var(--color-primario-fondo);
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid var(--color-acento-dorado);
+        }
+        .header-informe h1 {
+            font-size: 2.8rem;
+            color: var(--color-primario-fondo);
+            margin-bottom: 0.25em;
+        }
+        .header-informe .subtitulo-informe {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.2rem;
+            color: var(--color-acento-dorado);
+            font-style: italic;
+        }
+
+        .hero-section-espectacular {
+            min-height: 60vh; 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            color: white;
+            max-width: 21.59cm; /* Ancho de hoja carta APROX. */
+            margin-left: auto;   
+            margin-right: auto;  
+            margin-top: 2rem;    
+            margin-bottom: 2rem; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+        }
+        .hero-section-espectacular::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); 
+        }
+        .hero-contenido-wrapper {
+            max-width: 100%; 
+            padding-left: 2rem; 
+            padding-right: 2rem;
+            position: relative; 
+            z-index: 1;
+        }
+
+        .hero-contenido {
+            padding: 2rem 0; 
+        }
+        .hero-contenido h2 {
+            font-size: 3.2rem; 
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            margin-bottom: 0.5em;
+        }
+        .hero-contenido p {
+            font-size: 1.2rem; 
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            margin-bottom: 0;
+            max-width: 90%; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .seccion-contenido {
+            padding: 4rem 0;
+            border-bottom: 1px solid #D1C7B7;
+        }
+        .seccion-contenido:last-child {
+            border-bottom: none;
+        }
+        .seccion-contenido.fondo-oscuro {
+            background-color: var(--color-fondo-seccion-oscura);
+            color: var(--color-texto-claro);
+        }
+        .seccion-contenido.fondo-oscuro h1,
+        .seccion-contenido.fondo-oscuro h2,  
+        .seccion-contenido.fondo-oscuro h3,
+        .seccion-contenido.fondo-oscuro h4,
+        .seccion-contenido.fondo-oscuro h5,
+        .seccion-contenido.fondo-oscuro h6 {
+            color: var(--color-primario-fondo);
+        }
+        .seccion-contenido.fondo-oscuro .text-dorado-destacado {
+            color: var(--color-acento-dorado) !important;
+        }
+         .seccion-contenido.fondo-oscuro .content-text-espectacular strong {
+            color: var(--color-acento-dorado);
+        }
+        .seccion-contenido.fondo-oscuro .content-text-espectacular ul li::before {
+            color: var(--color-acento-dorado);
+        }
+
+        .titulo-seccion-principal {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .titulo-seccion-principal::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-acento-dorado);
+        }
+
+        .subtitulo-seccion {
+            font-size: 1.8rem;
+            color: var(--color-acento-verde);
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .seccion-contenido.fondo-oscuro .subtitulo-seccion {
+            color: var(--color-acento-dorado);
+        }
+
+        .content-text-espectacular {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        .content-text-espectacular p {
+            margin-bottom: 1.5rem;
+        }
+        .content-text-espectacular strong {
+            font-weight: 700;  
+            color: var(--color-titulos);
+        }
+        .content-text-espectacular ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content-text-espectacular ul li {
+            padding-left: 1.5em;
+            position: relative;
+            margin-bottom: 0.75em;
+        }
+        .content-text-espectacular ul li::before {
+            content: '✧';  
+            color: var(--color-acento-dorado);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        .imagen-destacada-wrapper {
+            margin: 2.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .imagen-destacada {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 600px;
+            object-fit: cover;
+        }
+        .imagen-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+        .seccion-contenido.fondo-oscuro .imagen-caption {
+            color: var(--color-texto-claro);
+            opacity: 0.8;
+        }
+
+        .layout-contexto-historico {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);  
+            gap: 2.5rem;  
+            align-items: stretch;  
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        .columna-imagenes-contexto {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;  
+        }
+        .imagen-wrapper-contexto {
+            flex-grow: 1;  
+            flex-basis: 0;  
+            border-radius: 8px;
+            overflow: hidden;  
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-height: 150px;  
+        }
+        .seccion-contenido.fondo-oscuro .imagen-wrapper-contexto {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25);  
+            border: 1px solid rgba(244, 241, 234, 0.1);  
+        }
+        .imagen-contexto {
+            width: 100%;
+            height: 100%;  
+            object-fit: cover;  
+            display: block;
+        }
+
+        .layout-dos-columnas {  
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tarjetas-datos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+        .tarjeta-dato {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            border-left: 5px solid var(--color-acento-verde);
+        }
+        .tarjeta-dato-valor {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+        .tarjeta-dato-etiqueta {
+            font-size: 1rem;
+            color: var(--color-texto-principal);
+        }
+        .seccion-contenido.fondo-oscuro .tarjeta-dato {
+            background-color: #394B59;  
+            border-left-color: var(--color-acento-dorado);
+        }
+        .seccion-contenido.fondo-oscuro .tarjeta-dato-valor {  
+             color: var(--color-primario-fondo);  
+        }
+         .seccion-contenido.fondo-oscuro .tarjeta-dato-etiqueta {
+            color: var(--color-texto-claro);
+            opacity: 0.9;
+        }
+
+        .grafico-pastel-contenedor {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin: 2.5rem auto;
+            max-width: 500px;
+        }
+        .grafico-pastel {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            background-image: conic-gradient(
+                var(--color-azul-grafica-pastel) 0% 39.1%,      
+                var(--color-dorado-grafica-pastel) 39.1% 70.8%,  
+                var(--color-naranja-grafica-pastel) 70.8% 82.2%,  
+                var(--color-verde-grafica-pastel) 82.2% 100%    
+            );
+        }
+        .leyenda-grafico-titulo {
+            text-align: center;
+            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--color-titulos);
+            margin-bottom: 1.5rem;
+        }
+        .leyenda-item-grafico {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .leyenda-color-box-grafico {
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            margin-right: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .seccion-contenido.fondo-oscuro .grafico-pastel-contenedor {
+             background-color: #394B59;
+        }
+        .seccion-contenido.fondo-oscuro .leyenda-grafico-titulo {
+            color: var(--color-primario-fondo);
+        }
+         .seccion-contenido.fondo-oscuro .leyenda-item-grafico {
+            color: var(--color-texto-claro);
+        }
+        
+        .grafico-linea-contenedor {
+            background-color: var(--color-tabla-fondo-blanco) !important;  /* Fondo blanco SIEMPRE */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin: 2.5rem auto;  
+            max-width: 800px;  
+            height: 450px; 
+            position: relative;  
+        }
+        .tabla-plusvalia-contenedor {
+            background-color: var(--color-tabla-fondo-blanco);  
+            padding: 1rem; 
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin: 1.5rem auto 0 auto;  
+            max-width: 500px; 
+            overflow-x: auto;  
+        }
+        .tabla-plusvalia {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem; 
+        }
+        .tabla-plusvalia th, .tabla-plusvalia td {
+            border: 1px solid var(--color-tabla-borde);
+            padding: 0.3rem 0.5rem; 
+            text-align: center;  
+        }
+        .tabla-plusvalia th {
+            background-color: var(--color-tabla-header-fondo);
+            color: var(--color-tabla-header-texto);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+        }
+        .tabla-plusvalia tbody tr:nth-child(even) {
+            background-color: var(--color-tabla-fila-par-fondo);
+        }
+         .tabla-plusvalia tbody tr:nth-child(odd) {  
+            background-color: var(--color-tabla-fondo-blanco);
+        }
+        .tabla-plusvalia td.crecimiento-positivo {
+            color: var(--color-acento-verde);
+            font-weight: bold;
+        }
+         .nota-grafico-tabla {  
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--color-texto-principal);
+            opacity: 0.8;
+            margin-top: 1.5rem;  
+            margin-bottom: 3rem; 
+        }
+
+        /* Si el .grafico-linea-contenedor ahora es siempre blanco, el título dentro de una sección oscura debe ser oscuro */
+        .seccion-contenido.fondo-oscuro .grafico-linea-contenedor .leyenda-grafico-titulo {
+             color: var(--color-titulos); 
+        }
+        .seccion-contenido.fondo-oscuro .tabla-plusvalia-contenedor {
+             background-color: var(--color-tabla-fondo-blanco);  
+             color: var(--color-texto-principal);  
+        }
+        .seccion-contenido.fondo-oscuro .tabla-plusvalia-contenedor .leyenda-grafico-titulo {
+            color: var(--color-titulos);  
+        }
+         .seccion-contenido.fondo-oscuro .nota-grafico-tabla {
+            color: var(--color-texto-claro); /* La nota puede seguir siendo clara si está fuera del gráfico */
+            opacity: 0.8;
+        }
+        .seccion-contenido.fondo-oscuro .tabla-plusvalia th {
+            background-color: var(--color-tabla-header-fondo);  
+            color: var(--color-tabla-header-texto);
+            border-color: var(--color-tabla-borde);
+        }
+        .seccion-contenido.fondo-oscuro .tabla-plusvalia td {
+            border-color: var(--color-tabla-borde);
+            color: var(--color-texto-principal);  
+        }
+        .seccion-contenido.fondo-oscuro .tabla-plusvalia tbody tr:nth-child(even) {
+            background-color: var(--color-tabla-fila-par-fondo);
+        }
+         .seccion-contenido.fondo-oscuro .tabla-plusvalia tbody tr:nth-child(odd) {
+            background-color: var(--color-tabla-fondo-blanco);
+        }
+        .seccion-contenido.fondo-oscuro .tabla-plusvalia td.crecimiento-positivo {
+            color: var(--color-acento-verde);  
+        }
+
+        .cita-destacada-espectacular {
+            margin: 2.5rem auto;  
+            padding: 2.5rem;
+            border-left: 6px solid var(--color-acento-dorado);
+            background-color: #EAE6DE;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .cita-destacada-espectacular p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--color-titulos);
+            line-height: 1.5;
+            margin: 0;
+        }
+         .seccion-contenido.fondo-oscuro .cita-destacada-espectacular {
+            background-color: #394B59;
+            border-left-color: var(--color-acento-dorado);
+        }
+         .seccion-contenido.fondo-oscuro .cita-destacada-espectacular p {
+            color: var(--color-primario-fondo);
+        }
+
+        .footer-informe {
+            background-color: var(--color-fondo-seccion-oscura);
+            color: var(--color-texto-claro);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+        .footer-informe .logo-placeholder {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--color-acento-dorado);
+            margin-bottom: 1rem;
+        }
+        .footer-informe p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        .footer-informe a {
+            color: var(--color-acento-dorado);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-informe a:hover {
+            color: white;
+        }
+
+        @media print {
+            :root {
+                --color-primario-fondo: #ffffff;
+                --color-texto-principal: #000000;
+                --color-titulos: #000000;
+                --color-acento-dorado: #444444;
+                --color-acento-verde: #000000;
+                --color-fondo-seccion-oscura: #ffffff;
+                --color-texto-claro: #000000;
+                --color-grafica-linea-principal: #000000;  
+                --color-grafica-area-relleno-naranja: rgba(230, 126, 34, 0.2); 
+                --color-grafica-ejes-texto: #000000;
+                --color-grafica-grid: #dddddd;
+                --color-grafica-leyenda-texto: #000000;
+                --color-azul-grafica-pastel: #6c95c3;
+                --color-dorado-grafica-pastel: #c7a269;
+                --color-naranja-grafica-pastel: #d99058;
+                --color-verde-grafica-pastel: #87b379;
+                --color-tabla-borde: #aaaaaa;
+                --color-tabla-header-fondo: #dddddd;
+                --color-tabla-fila-par-fondo: #f0f0f0;
+                 --color-tabla-fondo-blanco: #ffffff;
+            }
+            body {
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 10pt;  
+                line-height: 1.3;
+                background-color: white !important;
+                color: black !important;
+            }
+            .header-informe, .footer-informe {
+                display: none;
+            }
+            .container-principal {
+                max-width: 100%;
+                padding-left: 1cm;  
+                padding-right: 1cm;
+            }
+            .hero-section-espectacular {
+                height: auto;
+                padding: 0.5cm 0;  
+                background-image: none !important;
+                background-color: #f0f0f0 !important;
+                max-width: 100%; 
+                margin-top: 0;
+                margin-bottom: 1cm;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .hero-contenido-wrapper { 
+                padding-left: 1cm;  
+                padding-right: 1cm;
+            }
+            .hero-contenido h2 { font-size: 20pt; }
+            .hero-contenido p { font-size: 10pt; }
+
+            .seccion-contenido {
+                padding: 1cm 0;  
+                page-break-after: always;
+                border-bottom: 1px solid #dddddd;
+            }
+            .seccion-contenido:last-of-type {
+                 page-break-after: auto;
+            }
+            .seccion-contenido.fondo-oscuro {
+                background-color: white !important;
+            }
+             .seccion-contenido.fondo-oscuro h1,
+             .seccion-contenido.fondo-oscuro h2,  
+             .seccion-contenido.fondo-oscuro h3,
+             .seccion-contenido.fondo-oscuro h4,
+             .seccion-contenido.fondo-oscuro h5,
+             .seccion-contenido.fondo-oscuro h6,
+             .seccion-contenido.fondo-oscuro .subtitulo-seccion,
+             .seccion-contenido.fondo-oscuro .content-text-espectacular strong,
+             .seccion-contenido.fondo-oscuro .tarjeta-dato-valor,
+             .seccion-contenido.fondo-oscuro .tarjeta-dato-etiqueta,
+             .seccion-contenido.fondo-oscuro .leyenda-grafico-titulo, 
+             .seccion-contenido.fondo-oscuro .leyenda-item-grafico,
+             .seccion-contenido.fondo-oscuro .cita-destacada-espectacular p,
+             .seccion-contenido.fondo-oscuro .nota-grafico-tabla,
+             .seccion-contenido.fondo-oscuro .tabla-plusvalia th,
+             .seccion-contenido.fondo-oscuro .tabla-plusvalia td {
+                color: black !important;
+            }
+            .seccion-contenido.fondo-oscuro .grafico-linea-contenedor .leyenda-grafico-titulo {
+                color: black !important; 
+            }
+            .seccion-contenido.fondo-oscuro .tabla-plusvalia tbody tr:nth-child(even) {
+                background-color: var(--color-tabla-fila-par-fondo) !important;
+            }
+             .seccion-contenido.fondo-oscuro .tabla-plusvalia td.crecimiento-positivo {
+                color: #006400 !important; 
+            }
+
+            .titulo-seccion-principal { font-size: 14pt; margin-bottom: 0.5cm; }
+            .titulo-seccion-principal::after { background-color: #555555; height: 1px; width: 40px;}
+            .subtitulo-seccion { font-size: 12pt; margin-bottom: 0.4cm; color: black !important; }
+            
+            .content-text-espectacular { font-size: 10pt; line-height: 1.3; }
+            .content-text-espectacular ul li::before { color: #444444; }
+
+            .imagen-destacada-wrapper, .imagen-wrapper-contexto {  
+                box-shadow: none;  
+                border: 1px solid #cccccc;
+                margin: 0.5cm 0;
+                page-break-inside: avoid;
+            }
+            .imagen-destacada, .imagen-contexto { max-height: 30vh; }  
+            
+            .layout-dos-columnas, .layout-contexto-historico, .layout-grafico-tabla-plusvalia {  
+                grid-template-columns: 1fr !important;  
+                gap: 0.5cm;
+            }
+            .columna-imagenes-contexto {  
+                gap: 0.3cm;
+            }
+            .imagen-wrapper-contexto {
+                 min-height: 80px;  
+            }
+
+            .tarjetas-datos-grid {
+                grid-template-columns: repeat(2, 1fr);  
+                gap: 0.5cm;
+            }
+            .tarjeta-dato {  
+                box-shadow: none;  
+                border: 1px solid #cccccc;
+                padding: 0.5cm;
+                border-left-width: 2px;
+                page-break-inside: avoid;
+            }
+            .grafico-pastel-contenedor, .grafico-linea-contenedor, .tabla-plusvalia-contenedor {
+                box-shadow: none;
+                border: 1px solid #cccccc;
+                padding: 0.75cm;
+                page-break-inside: avoid;
+                 background-color: #ffffff !important; 
+                 height: auto !important;  
+            }
+            .grafico-pastel {  
+                border: 1px solid #999999;
+                background-image: none;
+                background-color: #e9e9e9;
+                width: 120px;
+                height: 120px;
+            }
+             #plusvaliaChart {  
+                max-width: 100% !important;
+                height: 250px !important; 
+            }
+            .tabla-plusvalia th, .tabla-plusvalia td {
+                padding: 0.3rem;
+                font-size: 8pt;
+            }
+            .cita-destacada-espectacular {
+                box-shadow: none;
+                border: 1px solid #cccccc;
+                border-left-width: 3px;
+                padding: 0.5cm;
+                background-color: #f0f0f0 !important;
+                page-break-inside: avoid;
+            }
+            .cita-destacada-espectacular p { font-size: 11pt; }
+        }
+    </style>
+</head>
+<body class="font-lato">
+
+    <header class="header-informe">
+        <div class="container-principal">
+            <h1>Análisis Integral del Destino</h1>
+            <p class="subtitulo-informe">La Ruta de los Cenotes, Puerto Morelos, Quintana Roo</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section-espectacular" style="background-image: url('https://imagizer.imageshack.com/img924/987/fdxHgu.png');">
+            <div class="hero-contenido-wrapper">
+                <div class="hero-contenido">
+                    <h2>La Ruta de los Cenotes</h2>
+                    <p>Un corredor de maravillas naturales, cultura ancestral y un futuro de oportunidades en el corazón de la Riviera Maya.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container-principal">
+
+            <section class="seccion-contenido">
+                <h3 class="subtitulo-seccion">Introducción al Paraíso Escondido</h3>
+                <div class="content-text-espectacular">
+                    <p>La Ruta de los Cenotes, enclavada en el corazón de la Riviera Maya y perteneciente al municipio de Puerto Morelos, Quintana Roo, se erige como un corredor de prodigiosa belleza natural y un epicentro de crecimiento y potencial. Este tramo de aproximadamente 35 kilómetros, que une Puerto Morelos con Leona Vicario, es mucho más que una simple vía; es un portal a la majestuosidad de la selva yucateca y al misticismo de sus aguas subterráneas. Representa un entorno idóneo donde la conexión auténtica con la naturaleza y la promesa de un futuro visionario convergen.</p>
+                    <p>Este análisis integral explora la riqueza de la Ruta de los Cenotes, su dinámica actual y las proyecciones futuras, valorando el origen, proyectando con visión y buscando un legado en armonía con la naturaleza y la promesa de trascendencia.</p>
+                </div>
+                <div class="imagen-destacada-wrapper">
+                    <img src="https://imagizer.imageshack.com/img923/1221/g7SOxx.jpg"  
+                         alt="Visión Aérea Estratégica de la Ruta de los Cenotes" class="imagen-destacada"  
+                         onerror="this.onerror=null; this.src='https://placehold.co/1200x700/cccccc/969696?text=Error+al+cargar+imagen';">
+                    <p class="imagen-caption">La Ruta de los Cenotes: un camino a través de la historia natural y cultural de la región.</p>
+                </div>
+            </section>
+
+            <section class="seccion-contenido">
+                <h2 class="titulo-seccion-principal">1. Descripción del Destino y Sus Atractivos</h2>
+                <p class="content-text-espectacular text-center max-w-3xl mx-auto mb-12">La Ruta de los Cenotes es un tesoro natural que alberga más de 60 cenotes, formaciones geológicas únicas que ofrecen espejos de agua cristalina ideales para la natación, el snorkel, el buceo y la exploración de cavernas. Estos cuerpos de agua, sagrados para la cultura maya, son el alma de la región.</p>
+
+                <div class="layout-dos-columnas">
+                    <div class="content-text-espectacular">
+                        <h4 class="subtitulo-seccion !mt-0">Naturaleza Exuberante</h4>
+                        <p>La densa selva maya envuelve la ruta, creando un ecosistema vibrante y hogar de una rica biodiversidad, un santuario de flora y fauna endémica que cautiva a cada paso.</p>
+                        <h4 class="subtitulo-seccion">Turismo de Aventura y Ecoturismo</h4>
+                        <p>Más allá de los cenotes, la zona es un imán para el turismo de aventura sostenible. Actividades como tirolesas que surcan la copa de los árboles, recorridos en bicicleta y senderismo por antiguos caminos mayas, emocionantes paseos en cuatrimotos, bungee jumping para los más audaces, y serenos paseos a caballo se complementan con ecoparques dedicados a la conservación y a ofrecer experiencias inmersivas y respetuosas con el entorno.</p>
+                    </div>
+                    <div class="imagen-destacada-wrapper">
+                        <img src="https://imagizer.imageshack.com/img922/6273/AZ7zQ8.jpg"  
+                             alt="Aventura y Naturaleza en un Cenote Idílico de la Ruta" class="imagen-destacada"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x1000/cccccc/969696?text=Error+al+cargar+imagen';">
+                    </div>
+                </div>
+                
+                <h4 class="subtitulo-seccion text-center">Ubicación Estratégica Clave</h4>
+                <ul class="content-text-espectacular max-w-2xl mx-auto text-center">
+                    <li>A solo 25 minutos del Aeropuerto Internacional de Cancún (aprox. 20 km).</li>
+                    <li>Proximidad privilegiada a Playa del Carmen y Tulum.</li>
+                    <li>En el corazón palpitante de la Riviera Maya, epicentro turístico mundial.</li>
+                    <li>Puerto Morelos, su puerta de entrada, presume el segundo sistema de arrecifes de coral más grande del planeta.</li>
+                </ul>
+                
+                <h4 class="subtitulo-seccion text-center">Pulso Turístico y Económico <span class="block text-base font-lato text-gray-500">(Datos Enero 2025)</span></h4>
+                <div class="tarjetas-datos-grid">
+                    <div class="tarjeta-dato">
+                        <p class="tarjeta-dato-valor" style="color: var(--color-acento-dorado);">&gt; 1.5 M</p>
+                        <p class="tarjeta-dato-etiqueta">Visitantes Anuales (P. Morelos)</p>
+                    </div>
+                    <div class="tarjeta-dato">
+                        <p class="tarjeta-dato-valor" style="color: var(--color-azul-grafica-pastel);">80%</p>
+                        <p class="tarjeta-dato-etiqueta">Ocupación Hotelera (Temp. Alta)</p>
+                    </div>
+                    <div class="tarjeta-dato">
+                        <p class="tarjeta-dato-valor" style="color: var(--color-naranja-grafica-pastel);">&gt; $4 Mil MM</p>
+                        <p class="tarjeta-dato-etiqueta">Derrama Económica Anual (MXN)</p>
+                    </div>
+                </div>
+
+                <div class="grafico-pastel-contenedor">
+                    <h5 class="leyenda-grafico-titulo">Principales Mercados Turísticos</h5>
+                    <div class="grafico-pastel"></div>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 mt-4">
+                        <div class="leyenda-item-grafico"><div class="leyenda-color-box-grafico" style="background-color: var(--color-azul-grafica-pastel);"></div>Estados Unidos: 39.10%</div>
+                        <div class="leyenda-item-grafico"><div class="leyenda-color-box-grafico" style="background-color: var(--color-dorado-grafica-pastel);"></div>México: 31.70%</div>
+                        <div class="leyenda-item-grafico"><div class="leyenda-color-box-grafico" style="background-color: var(--color-naranja-grafica-pastel);"></div>Canadá: 11.40%</div>
+                        <div class="leyenda-item-grafico"><div class="leyenda-color-box-grafico" style="background-color: var(--color-verde-grafica-pastel);"></div>Otros: 17.80%</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="seccion-contenido fondo-oscuro">
+                <div class="container-principal">
+                    <h2 class="titulo-seccion-principal">2. Contexto Histórico y Evolución</h2>
+                    <p class="content-text-espectacular text-center max-w-3xl mx-auto mb-12">Puerto Morelos, constituido como el undécimo municipio de Quintana Roo, ha experimentado una notable expansión urbana, particularmente entre 2013 y 2023. La Ruta de los Cenotes ha sido protagonista de este crecimiento, con una proliferación de emprendimientos ecoturísticos, fraccionamientos y haciendas que redefinen su paisaje.</p>
+                    
+                    <div class="layout-contexto-historico">
+                        <div class="content-text-espectacular"> <h4 class="subtitulo-seccion !mt-0">Desarrollo Urbano Acelerado</h4>
+                            <p>Incremento significativo de zonas residenciales y fraccionamientos, respondiendo a una demanda creciente por un estilo de vida conectado con la naturaleza.</p>
+                            <h4 class="subtitulo-seccion">Marco Regulatorio en Transición</h4>
+                            <p>Hasta abril de 2023, la zona operaba bajo el PDU y POEL de Benito Juárez (2014). Estas directrices, con Unidades de Gestión Ambiental (UGA) enfocadas en conservación, reconocían riesgos inherentes como incendios forestales y la urgencia de controlar cambios de uso de suelo no autorizados.</p>
+                            <h4 class="subtitulo-seccion">La Cuestión de las Tierras Ejidales</h4>
+                            <p>La transferencia de derechos de terrenos ejidales a desarrolladoras ha sido una práctica común en la región. Este fenómeno subraya la imperante necesidad de procesos de regularización transparentes y eficientes para brindar certeza jurídica a todas las partes involucradas.</p>
+                        </div>
+                        <div class="columna-imagenes-contexto"> <div class="imagen-wrapper-contexto">
+                                <img src="https://imagizer.imageshack.com/img922/9527/8Gvf06.png" alt="Desarrollo Urbano y Naturaleza en la Ruta de los Cenotes 1" class="imagen-contexto" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/969696?text=Error+Imagen+1';">
+                            </div>
+                            <div class="imagen-wrapper-contexto">
+                                <img src="https://imagizer.imageshack.com/img922/1999/ZyuVDe.jpg" alt="Planificación y Desarrollo Urbano Sostenible 2" class="imagen-contexto" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/969696?text=Error+Imagen+2';">
+                            </div>
+                            <div class="imagen-wrapper-contexto">
+                                <img src="https://imagizer.imageshack.com/img922/8614/mknWBI.jpg" alt="Integración Arquitectónica con el Entorno Selvático 3" class="imagen-contexto" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/969696?text=Error+Imagen+3';">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </section>
+            
+            <section class="seccion-contenido">
+                 <h2 class="titulo-seccion-principal">3. El Mercado Inmobiliario Actual (2025)</h2>
+                 <p class="content-text-espectacular text-center max-w-3xl mx-auto mb-12">El mercado inmobiliario en la Ruta de los Cenotes es un ecosistema vibrante y en plena efervescencia, impulsado por su innegable atractivo turístico y su creciente consolidación como un refugio de inversión inteligente y un destino para un estilo de vida único.</p>
+
+                <h4 class="subtitulo-seccion text-center">Tendencias Generales del Mercado</h4>
+                 <div class="bg-white p-8 rounded-lg shadow-xl my-8 border-t-4" style="border-color: var(--color-acento-dorado);">
+                    <div class="grid md:grid-cols-3 gap-8 text-center">
+                        <div>
+                            <p class="text-5xl font-playfair font-bold" style="color: var(--color-acento-dorado);">&gt;35%</p>
+                            <p class="mt-2 text-lg text-gray-700">Aumento Inversión Inmobiliaria Anual (P. Morelos)</p>
+                        </div>
+                        <div>
+                             <p class="text-5xl font-playfair font-bold" style="color: var(--color-azul-grafica-pastel);">18-25%</p>
+                             <p class="mt-2 text-lg text-gray-700">Alza de Precios Anual (Riviera Maya)</p>
+                        </div>
+                        <div>
+                             <p class="text-5xl font-playfair font-bold" style="color: var(--color-naranja-grafica-pastel);">8-12%</p>
+                             <p class="mt-2 text-lg text-gray-700">Rentabilidad Anual Promedio (P. Morelos)</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center mt-8 text-gray-500">Fuente: Instituto de Estadística y Geografía de Quintana Roo</p>
+                </div>
+
+                <div class="layout-dos-columnas">
+                    <div class="content-text-espectacular">
+                        <h5 class="subtitulo-seccion !mt-0">Origen de los Inversionistas:</h5>
+                        <ul>
+                            <li>México (principal mercado doméstico)</li>
+                            <li>Estados Unidos (30%)</li>
+                            <li>Canadá (15%)</li>
+                            <li>Latinoamérica: Colombia (55% del subgrupo), Argentina (35%), Chile y Perú (10%)</li>
+                        </ul>
+                        <h5 class="subtitulo-seccion">Precios de Referencia (Principios 2025):</h5>
+                        <ul>
+                            <li><strong>MUKTA Residencial:</strong> Lotes desde $49,000 USD (500-2,300 m²).</li>
+                            <li><strong>Eco-sustentables:</strong> Desde $65,000 USD.</li>
+                            <li><strong>Amplias/Exclusivas:</strong> $200,000 - $300,000 USD.</li>
+                            <li><strong>Ejidales (ejemplo):</strong> 780 m² a $425,000 USD.</li>
+                        </ul>
+                    </div>
+                     <div class="imagen-destacada-wrapper">
+                        <img src="https://imagizer.imageshack.com/img924/6650/8l76M5.png"  
+                             alt="Lujo Sostenible Residencial en la Selva" class="imagen-destacada"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x900/cccccc/969696?text=Error+al+cargar+imagen';">
+                        <p class="imagen-caption">Proyectos que fusionan lujo y sostenibilidad en el entorno selvático.</p>
+                    </div>
+                </div>
+                
+                <h4 class="subtitulo-seccion text-center">Tipos de Propiedades en Auge y Desarrollos Clave</h4>
+                <p class="content-text-espectacular">La oferta incluye terrenos eco-residenciales, cabañas rústicas, eco-resorts y villas de lujo. Desarrollos como <strong>MUKTA Residencial</strong> y <strong>Xul-Ha Eco Habitat</strong> son ejemplos de la dinámica actual, junto con oportunidades en terrenos ejidales y propiedades para renta vacacional como <strong>Villa Gaya</strong>.</p>
+            </section>
+
+            <section class="seccion-contenido fondo-oscuro"> <div class="container-principal">
+                    <h2 class="titulo-seccion-principal">4. Planes Futuros y Proyección de Plusvalía</h2>
+                    <p class="content-text-espectacular text-center max-w-3xl mx-auto mb-12">Diversos factores y planes gubernamentales sugieren una continuación de la tendencia al alza en la plusvalía, proyectando un horizonte prometedor para los próximos 5 años.</p>
+
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-8 mb-10">
+                        <div class="content-text-espectacular">
+                            <h5 class="subtitulo-seccion !text-xl" style="color: var(--color-acento-dorado);">1. Regularización de Predios (2025+)</h5>
+                            <p><strong>Objetivo:</strong> Brindar certidumbre jurídica y ordenar el crecimiento. <strong>Impacto:</strong> Aumento del valor y seguridad de inversiones.</p>
+                        </div>
+                        <div class="content-text-espectacular">
+                            <h5 class="subtitulo-seccion !text-xl" style="color: var(--color-acento-dorado);">2. Infraestructura Vial Estratégica</h5>
+                            <p>Ampliación de carretera a 4 carriles y ciclovía. <strong>Impacto:</strong> Mejora de conectividad, atractivo turístico y valor de propiedades.</p>
+                        </div>
+                        <div class="content-text-espectacular">
+                            <h5 class="subtitulo-seccion !text-xl" style="color: var(--color-acento-dorado);">3. Impulso Turístico y Económico</h5>
+                            <p>Plan Municipal 2024-2027, Tren Maya. <strong>Impacto:</strong> Polo de aventura, ecoturismo, fomento a inversión.</p>
+                        </div>
+                        <div class="content-text-espectacular">
+                            <h5 class="subtitulo-seccion !text-xl" style="color: var(--color-acento-dorado);">4. Ordenamiento y Crecimiento Sostenible</h5>
+                            <p>Nuevo PDUCP y POEL (visión 2050). <strong>Impacto:</strong> Confianza inversora, desarrollo sostenible a largo plazo.</p>
+                        </div>
+                    </div>
+
+                    <div class="grafico-linea-contenedor"> 
+                        <h5 class="leyenda-grafico-titulo">Evolución y Proyección de Plusvalía</h5>
+                        <canvas id="plusvaliaChart"></canvas>
+                    </div>
+                    <div class="tabla-plusvalia-contenedor"> <h5 class="leyenda-grafico-titulo">Datos de Plusvalía</h5>
+                        <table class="tabla-plusvalia">
+                            <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Precio USD/m²</th>
+                                    <th>Crecimiento Anual</th>
+                                </tr>
+                            </thead>
+                            <tbody id="plusvaliaTableBody">
+                                 </tbody>
+                        </table>
+                    </div>
+                     <p class="nota-grafico-tabla">Nota: Los datos históricos y proyectados son ilustrativos y se basan en tendencias generales del mercado y factores de crecimiento mencionados. No representan una garantía de rendimiento.</p>
+
+                    <div class="cita-destacada-espectacular"> <p>"MUKTA Residencial proyecta una plusvalía superior al 90% en los próximos 5 años."<br><span class="text-sm font-lato opacity-70">(Nota: Proyección de marketing. Considerar con cautela.)</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="seccion-contenido">
+                <h2 class="titulo-seccion-principal">5. Desafíos y Consideraciones Críticas</h2>
+                <p class="content-text-espectacular text-center max-w-3xl mx-auto mb-12">El crecimiento conlleva responsabilidades para asegurar la sostenibilidad y preservar el valor único de la Ruta de los Cenotes.</p>
+                <div class="layout-dos-columnas">
+                    <ul class="content-text-espectacular">
+                        <li><strong>Presión sobre Recursos Naturales:</strong> Planificación cuidadosa de la expansión.</li>
+                        <li><strong>Contaminación del Manto Freático:</strong> Riesgo por desarrollos no regulados.</li>
+                        <li><strong>Necesidad de Estudios y Atlas de Riesgos:</strong> Actualización crucial para zonas kársticas.</li>
+                        <li><strong>Ordenamiento y Normatividad Específica:</strong> Urgencia de Reglamento Municipal de Cenotes.</li>
+                        <li><strong>Gestión de Tierras Ejidales:</strong> Procesos transparentes y coordinados.</li>
+                    </ul>
+                    <div class="imagen-destacada-wrapper">
+                        <img src="https://imagizer.imageshack.com/img924/1151/crgbem.png"  
+                             alt="Conservación del Agua Pristina de los Cenotes" class="imagen-destacada"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x600/cccccc/969696?text=Error+al+cargar+imagen';">
+                        <p class="imagen-caption">La preservación de estos ecosistemas acuáticos es vital para el futuro de la región.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="seccion-contenido fondo-oscuro">
+                <div class="container-principal">
+                    <h2 class="titulo-seccion-principal">6. Conclusión: Perspectiva Favorable</h2>
+                    <div class="content-text-espectacular">
+                        <p>Las fuentes analizadas, las tendencias del mercado y los planes gubernamentales en curso convergen para sugerir que la Ruta de los Cenotes está estratégicamente posicionada para experimentar una <strong>plusvalía significativa y sostenida en los próximos 5 años.</strong> Esta perspectiva optimista se fundamenta en pilares robustos como mejoras en infraestructura, mayor certidumbre legal, y un fuerte impulso turístico y económico.</p>
+                        <p>Si bien la proyección específica de un "+90% en 5 años" por parte de un desarrollo particular debe considerarse en su contexto promocional, la <strong>tendencia general del mercado es inequívocamente positiva y al alza.</strong> El grado exacto de plusvalía, naturalmente, variará según la ubicación precisa, el tipo y calidad del desarrollo, y la diligencia con la que se aborden la gestión ambiental y el ordenamiento territorial.</p>
+                        <p class="font-bold text-xl text-center mt-8 leading-relaxed" style="color: var(--color-acento-dorado);">
+                        Invertir en la Ruta de los Cenotes, especialmente en proyectos con una visión de sostenibilidad, integración comunitaria y profundo respeto por el entorno, no es solo una apuesta financiera astuta; es una participación activa en la creación de un futuro donde el lujo sofisticado, la naturaleza prístina y una comunidad vibrante coexisten en perfecta armonía. Es asegurar un lugar en el origen de algo verdaderamente trascendente.
+                        </p>
+                    </div>
+                     <div class="imagen-destacada-wrapper mt-12">
+                        <img src="https://imagizer.imageshack.com/img924/3757/58SPyM.jpg"  
+                             alt="Un Legado de Inversión en la Riviera Maya" class="imagen-destacada"
+                             onerror="this.onerror=null; this.src='https://placehold.co/1200x600/cccccc/969696?text=Error+al+cargar+imagen';">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer-informe">
+        <div class="container-principal">
+            <div class="logo-placeholder">Análisis de Destino</div>
+            <p>&copy; <span id="currentYear"></span> Análisis de Destino Riviera Maya. Todos los derechos reservados.</p>
+            <p>Este documento constituye un análisis basado en información pública disponible y estimaciones realizadas al primer trimestre de 2025. Se recomienda la consulta con asesores profesionales antes de tomar decisiones de inversión.</p>
+            <div class="mt-4">
+                <a href="#">Volver al inicio</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const plusvaliaCtx = document.getElementById('plusvaliaChart');
+        if (plusvaliaCtx) {
+            // Colores para ejes y leyenda (siempre para fondo blanco del gráfico)
+            // Leemos los valores de las variables CSS para usarlos en JavaScript
+            const rootStyles = getComputedStyle(document.documentElement);
+            const tickColor = rootStyles.getPropertyValue('--color-grafica-ejes-texto').trim();
+            const gridColor = rootStyles.getPropertyValue('--color-grafica-grid').trim();
+            const legendColor = rootStyles.getPropertyValue('--color-grafica-leyenda-texto').trim();
+            
+            const lineColor = rootStyles.getPropertyValue('--color-grafica-linea-principal').trim();
+            const areaFillColor = rootStyles.getPropertyValue('--color-grafica-area-relleno-naranja').trim();
+            const pointColor = rootStyles.getPropertyValue('--color-grafica-punto-principal').trim();
+            const pointBorderColor = rootStyles.getPropertyValue('--color-grafica-punto-borde').trim();
+            const tooltipBgColor = rootStyles.getPropertyValue('--color-grafica-tooltip-fondo').trim();
+
+
+            const chartData = {
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025 (Actual)', '2026 (Proy.)', '2027 (Proy.)', '2028 (Proy.)', '2029 (Proy.)', '2030 (Proy.)'],
+                prices: [30, 35, 42, 50, 60, 75, 90, 110, 135, 160, 190]
+            };
+
+            new Chart(plusvaliaCtx, {
+                type: 'line',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        label: 'Precio Promedio Terreno (USD/m²)',  
+                        data: chartData.prices,
+                        borderColor: lineColor,      
+                        backgroundColor: areaFillColor, 
+                        fill: true,
+                        tension: 0.4,  
+                        pointBackgroundColor: pointColor, 
+                        pointBorderColor: pointBorderColor,  
+                        pointHoverBackgroundColor: pointBorderColor, // Efecto hover
+                        pointHoverBorderColor: pointColor,    // Efecto hover
+                        pointRadius: 5,  
+                        pointHoverRadius: 8, 
+                        borderWidth: 2.5 
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) { return '$' + value + ' USD'; },
+                                color: tickColor, 
+                                font: { family: "'Lato', sans-serif", size: 12, weight: '700' },  
+                                padding: 10  
+                            },
+                            grid: {  
+                                color: gridColor, 
+                                borderWidth: 1,  
+                                drawBorder: false  
+                            }
+                        },
+                        x: {
+                             ticks: {  
+                                color: tickColor, 
+                                font: { family: "'Lato', sans-serif", size: 12, weight: '700' },  
+                                maxRotation: 0,  
+                                minRotation: 0
+                             },
+                            grid: {  
+                                display: true,  
+                                color: gridColor, 
+                                drawBorder: false
+                             }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',  
+                            labels: {
+                                color: legendColor, 
+                                font: { family: "'Lato', sans-serif", size: 14, weight: '700' },  
+                                padding: 20  
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: tooltipBgColor, 
+                            titleFont: { family: "'Playfair Display', serif", size: 16, weight: 'bold' },
+                            bodyFont: { family: "'Lato', sans-serif", size: 14 },
+                            padding: 15,
+                            cornerRadius: 5,
+                            displayColors: false,  
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Precio: $' + context.parsed.y + ' USD/m²';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const tableBody = document.getElementById('plusvaliaTableBody');
+            if (tableBody) {
+                tableBody.innerHTML = '';  
+                for (let i = 0; i < chartData.labels.length; i++) {
+                    const row = tableBody.insertRow();
+                    const cellYear = row.insertCell();
+                    const cellPrice = row.insertCell();
+                    const cellGrowth = row.insertCell();
+
+                    cellYear.textContent = chartData.labels[i];
+                    cellPrice.textContent = '$' + chartData.prices[i];
+                    
+                    if (i > 0) {
+                        const previousPrice = chartData.prices[i-1];
+                        const currentPrice = chartData.prices[i];
+                        const growth = ((currentPrice - previousPrice) / previousPrice * 100).toFixed(1);
+                        cellGrowth.textContent = growth + '%';
+                        if (parseFloat(growth) > 0) {
+                            cellGrowth.classList.add('crecimiento-positivo');
+                        }
+                    } else {
+                        cellGrowth.textContent = '-';
+                    }
+                }
+            }
+
+        } else {
+            console.error("Elemento canvas 'plusvaliaChart' no encontrado.");
+        }
+    </script>
+</body>
+</html>
